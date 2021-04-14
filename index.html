@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+ 
+  <body>
+    <button id="mic"> tap to speak</button>
+    
+
+  <script>
+    var mic=document.getElementById("mic");
+    var SpeechRecognition=SpeechRecognition || webkitSpeechRecognition;
+    var recognition= new SpeechRecognition();
+    recognition.onresult=function(e){
+    
+    let transcript=e.results[0][0].transcript;
+      voice(transcript);
+      console.log(transcript)
+    };
+    
+    
+    mic.addEventListener('click', function(){
+      recognition.start();
+      
+    })
+    
+  function voice(transcript){
+let msg = new SpeechSynthesisUtterance();
+if(transcript=='hi'){
+ msg.text= 'hellow'
+}
+
+
+else if(transcript=='how are you'){
+ msg.text= 'i am fine.thank you.'
+}
+else if(transcript=='do you like me'){
+ msg.text= 'of course. i hope you like me too '
+}
+else if(transcript=='who are you'){
+ msg.text= 'i am your assistance'
+}
+else if(transcript=='what is your favorite color'){
+ msg.text= 'my favorite color is black'
+}
+else if(transcript=='what is your favorite game'){
+ msg.text= 'my favorite game is free fire'
+}
+else if(transcript=='what is your job'){
+ msg.text= 'my job is to help you.whatever you need i am here for you.'
+}
+
+
+else if(transcript=="what are you doing today"){
+  msg.text="i am waiting for you"
+}
+
+
+else{
+  msg.text='sorry tell me again'
+}
+
+window.speechSynthesis.speak(msg);
+}
+    
+  </script>
+    </body>
+</html>
